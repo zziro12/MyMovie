@@ -32,28 +32,28 @@
                                                         <constraint firstAttribute="width" secondItem="Wxd-vr-FDV" secondAttribute="height" multiplier="7:10" id="iZP-Ji-qRU"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seven" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSi-aC-bDr">
-                                                    <rect key="frame" x="236" y="53.666666666666657" width="79" height="33"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rememberthetitans" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSi-aC-bDr">
+                                                    <rect key="frame" x="134" y="53.666666666666657" width="260" height="33"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="myScore : 4.7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8Z-no-Zgl">
-                                                    <rect key="frame" x="189.33333333333337" y="106.66666666666667" width="172" height="33.000000000000014"/>
+                                                    <rect key="frame" x="178" y="107" width="172" height="33"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SSi-aC-bDr" firstAttribute="centerY" secondItem="58b-WM-hcb" secondAttribute="centerY" constant="-30" id="3tF-Rr-RC5"/>
-                                                <constraint firstItem="SSi-aC-bDr" firstAttribute="leading" secondItem="Wxd-vr-FDV" secondAttribute="trailing" constant="110.33333333333331" id="9ou-Gm-sQP"/>
-                                                <constraint firstAttribute="trailing" secondItem="SSi-aC-bDr" secondAttribute="trailing" constant="99" id="BSA-gD-4Vp"/>
-                                                <constraint firstItem="H8Z-no-Zgl" firstAttribute="top" secondItem="SSi-aC-bDr" secondAttribute="bottom" constant="20" id="DSR-kz-Qmu"/>
                                                 <constraint firstItem="Wxd-vr-FDV" firstAttribute="height" secondItem="58b-WM-hcb" secondAttribute="height" multiplier="0.64" constant="30" id="FbB-wm-Bnr"/>
+                                                <constraint firstItem="SSi-aC-bDr" firstAttribute="centerY" secondItem="58b-WM-hcb" secondAttribute="centerY" constant="-30" id="L3C-IN-quw"/>
                                                 <constraint firstItem="Wxd-vr-FDV" firstAttribute="leading" secondItem="58b-WM-hcb" secondAttribute="leading" constant="15" id="eKZ-EL-w0M"/>
+                                                <constraint firstItem="SSi-aC-bDr" firstAttribute="leading" secondItem="Wxd-vr-FDV" secondAttribute="trailing" constant="8.3333333333333144" id="gcZ-PC-Zvo"/>
+                                                <constraint firstItem="H8Z-no-Zgl" firstAttribute="top" secondItem="SSi-aC-bDr" secondAttribute="bottom" constant="20.333333333333329" id="joT-Xi-sqq"/>
+                                                <constraint firstItem="H8Z-no-Zgl" firstAttribute="centerX" secondItem="SSi-aC-bDr" secondAttribute="centerX" id="ptF-rC-OzT"/>
                                                 <constraint firstItem="Wxd-vr-FDV" firstAttribute="centerY" secondItem="58b-WM-hcb" secondAttribute="centerY" id="pue-DD-ynJ"/>
-                                                <constraint firstItem="H8Z-no-Zgl" firstAttribute="centerX" secondItem="SSi-aC-bDr" secondAttribute="centerX" id="yTR-l3-5q9"/>
+                                                <constraint firstAttribute="trailing" secondItem="SSi-aC-bDr" secondAttribute="trailing" constant="20" id="sOn-Sr-BOV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -11,8 +11,8 @@ import UIKit
 class MovieViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
     
     //임시 데이터.  무비스코어는 더블타입 어레이
-    let movieTitleList = ["Seven","Zootopia","lionking","타짜","내부자들","광해","공조","럭키"]
-    let myScoreList = [ 4.7, 5, 3, 4.4, 3.5 , 4.5, 3.2, 2]
+    let movieTitleList = ["1917","Seven","BloodDiamond","Django","Fightclub","Memento","RememberTheTitans","ShutterIsland","Zootopia"]
+    let myScoreList = [ 4.7, 4.8, 5, 4.4, 3.5 , 4.5, 3.2, 4.1,4.9]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,30 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     
     //어떻게 표현할건가     indexPath = 셀의 위치 표시
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //UITableViewCell 이 아닌 CellList로 캐스팅해준다.
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        //guard
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellList else{
+            return UITableViewCell()
+        }
+        //guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellList
+        //이 성립이 되면 아래 코드가 수행되고 아니면 위에 else 구문
+        let img = UIImage(named: "\(movieTitleList[indexPath.row]).jpg")
+        cell.movieImage.image = img
+        cell.movieTitle.text = movieTitleList[indexPath.row]
+        cell.myScore.text = "\(myScoreList[indexPath.row])"
         return cell
+        
+        //if let
+//        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellList {
+//            let img = UIImage(named: "\(movieTitleList[indexPath.row]).jpg")
+//            cell.movieImage.image = img
+//            cell.movieTitle.text = movieTitleList[indexPath.row]
+//            cell.myScore.text = "\(myScoreList[indexPath.row])"
+//            return cell
+//        }else{
+//            return UITableViewCell()
+//        }
     }
     
     //MARKS : UITableViewDelegate
