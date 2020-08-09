@@ -78,10 +78,78 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="qwj-HA-md5" kind="presentation" identifier="showDetail" id="IXX-Oq-q2w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="118.20652173913044"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="lY2-NL-2r9">
+            <objects>
+                <viewController id="qwj-HA-md5" customClass="DetailViewController" customModule="MyMovie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f6Y-pT-736">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csJ-rw-fOf">
+                                <rect key="frame" x="348" y="20" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AQJ-OW-Yli"/>
+                                    <constraint firstAttribute="height" constant="50" id="rsc-uo-vil"/>
+                                </constraints>
+                                <state key="normal" image="close_ic"/>
+                                <connections>
+                                    <action selector="close:" destination="qwj-HA-md5" eventType="touchUpInside" id="64G-V8-H2O"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rememberthtitans" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJK-JM-cIu">
+                                <rect key="frame" x="80" y="558" width="254" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ThO-8O-kvA">
+                                <rect key="frame" x="60" y="100" width="294" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ThO-8O-kvA" secondAttribute="height" multiplier="7:10" id="jKJ-RG-jRg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="myscore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgv-4S-xlU">
+                                <rect key="frame" x="146.66666666666666" y="619" width="120.99999999999997" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ThO-8O-kvA" firstAttribute="top" secondItem="dL1-NV-Mz9" secondAttribute="top" constant="100" id="4eK-D2-Mga"/>
+                            <constraint firstItem="csJ-rw-fOf" firstAttribute="top" secondItem="dL1-NV-Mz9" secondAttribute="top" constant="20" id="EMe-0J-Mrl"/>
+                            <constraint firstItem="Lgv-4S-xlU" firstAttribute="top" secondItem="bJK-JM-cIu" secondAttribute="bottom" constant="25" id="Evd-A0-TX8"/>
+                            <constraint firstItem="dL1-NV-Mz9" firstAttribute="trailing" secondItem="csJ-rw-fOf" secondAttribute="trailing" constant="16" id="Ldb-7u-Roa"/>
+                            <constraint firstItem="Lgv-4S-xlU" firstAttribute="centerX" secondItem="bJK-JM-cIu" secondAttribute="centerX" id="P01-Sl-G1x"/>
+                            <constraint firstItem="bJK-JM-cIu" firstAttribute="centerX" secondItem="ThO-8O-kvA" secondAttribute="centerX" id="ZsQ-tr-dh8"/>
+                            <constraint firstItem="ThO-8O-kvA" firstAttribute="leading" secondItem="dL1-NV-Mz9" secondAttribute="leading" constant="60" id="bxc-HM-dLU"/>
+                            <constraint firstItem="ThO-8O-kvA" firstAttribute="centerX" secondItem="dL1-NV-Mz9" secondAttribute="centerX" id="nVG-xJ-cqR"/>
+                            <constraint firstItem="bJK-JM-cIu" firstAttribute="top" secondItem="ThO-8O-kvA" secondAttribute="bottom" constant="38" id="xKb-oB-ryl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dL1-NV-Mz9"/>
+                    </view>
+                    <connections>
+                        <outlet property="movieImage" destination="ThO-8O-kvA" id="bWy-S6-eyK"/>
+                        <outlet property="movieTitle" destination="bJK-JM-cIu" id="oAE-tk-DCF"/>
+                        <outlet property="myScore" destination="Lgv-4S-xlU" id="UeN-Sl-mqu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OmN-3x-K9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1176.8115942028987" y="117.39130434782609"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="close_ic" width="128" height="128"/>
+    </resources>
 </document>

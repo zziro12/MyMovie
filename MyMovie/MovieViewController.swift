@@ -14,6 +14,18 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     let movieTitleList = ["1917","Seven","BloodDiamond","Django","Fightclub","Memento","RememberTheTitans","ShutterIsland","Zootopia"]
     let myScoreList = [ 4.7, 4.8, 5, 4.4, 3.5 , 4.5, 3.2, 4.1,4.9]
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //DetailViewController에게 데이터 전송
+        if segue.identifier == "showDetail"{
+            let vc = segue.destination as? DetailViewController
+            
+            if let index = sender as? Int{
+                vc?.movieTitleName = movieTitleList[index]
+                vc?.movieScore = myScoreList[index]
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,7 +72,8 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     //MARKS : UITableViewDelegate
     //클릭했을때 어떻게 반응할 것인가 tableView 에 didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)")
+        print("\(movieTitleList[indexPath.row]) 디테일 보기")
+        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
     }
 }
 
