@@ -10,9 +10,34 @@ import UIKit
 
 class MovieViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
     
-    //임시 데이터.  무비스코어는 더블타입 어레이
-    let movieTitleList = ["1917","Seven","BloodDiamond","Django","Fightclub","Memento","RememberTheTitans","ShutterIsland","Zootopia"]
-    let myScoreList = [ 4.7, 4.8, 5, 4.4, 3.5 , 4.5, 3.2, 4.1,4.9]
+    //MVVM
+    
+    //Model
+    // - MovieInfo
+    // > MovieInfo 만들기
+    
+    //View
+    // - CellList
+    // > CellList필요한 정보를 ViewModel에서 받기
+    // > CellList은 ViewModel로부터 받은 정보로 뷰 업데이트하기
+    
+    //ViewModel
+    // - MovieViewModel
+    // > MovieViewModel을 만들고 뷰레이어에서 필요한 메서드 만들기
+    // > 모델가지고 있기 ,, MovieInfo 등
+    
+    
+    let movieInfoList : [MovieInfo] = [
+    MovieInfo(movieTitle: "1917", myScore: 4.7),
+    MovieInfo(movieTitle: "Seven", myScore: 4.8),
+    MovieInfo(movieTitle: "BloodDiamond", myScore: 5),
+    MovieInfo(movieTitle: "Django", myScore: 4.4),
+    MovieInfo(movieTitle: "Fightclub", myScore: 3.5),
+    MovieInfo(movieTitle: "Memento", myScore: 4.5),
+    MovieInfo(movieTitle: "RememberTheTitans", myScore: 3.2),
+    MovieInfo(movieTitle: "ShutterIsland", myScore: 4.1),
+    MovieInfo(movieTitle: "Zootopia", myScore: 4.9),
+    ]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //DetailViewController에게 데이터 전송
@@ -20,16 +45,15 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
             let vc = segue.destination as? DetailViewController
             
             if let index = sender as? Int{
-                vc?.movieTitleName = movieTitleList[index]
-                vc?.movieScore = myScoreList[index]
+                let movieInfo = movieInfoList[index]
+                
+                vc?.movieInfo = movieInfo
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
     
     //MARKS : UITableViewDataSource protocol
@@ -37,8 +61,7 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     //UITableViewDataSource
     //몇개 보여줄거냐
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
-        return movieTitleList.count
+        return movieInfoList.count
     }
     
     //어떻게 표현할건가     indexPath = 셀의 위치 표시
@@ -51,10 +74,10 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
         }
         //guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellList
         //이 성립이 되면 아래 코드가 수행되고 아니면 위에 else 구문
-        let img = UIImage(named: "\(movieTitleList[indexPath.row]).jpg")
-        cell.movieImage.image = img
-        cell.movieTitle.text = movieTitleList[indexPath.row]
-        cell.myScore.text = "\(myScoreList[indexPath.row])"
+        let movieInfo = movieInfoList[indexPath.row]
+        cell.movieImage.image = movieInfo.image
+        cell.movieTitle.text = movieInfo.movieTitle
+        cell.myScore.text = "\(movieInfo.myScore)"
         return cell
         
         //if let
@@ -72,7 +95,8 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     //MARKS : UITableViewDelegate
     //클릭했을때 어떻게 반응할 것인가 tableView 에 didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(movieTitleList[indexPath.row]) 디테일 보기")
+        let movieInfo = movieInfoList[indexPath.row]
+        print("\(movieInfo.movieTitle) 디테일 보기")
         performSegue(withIdentifier: "showDetail", sender: indexPath.row)
     }
 }
@@ -82,4 +106,18 @@ class CellList : UITableViewCell {
     @IBOutlet weak var movieTitle : UILabel!
     @IBOutlet weak var myScore : UILabel!
     
+}
+
+struct MovieInfo {
+    let movieTitle : String
+    let myScore : Double
+    
+    var image : UIImage? {
+        return UIImage(named: "\(movieTitle).jpg")
+    }
+    
+    init(movieTitle : String, myScore : Double) {
+        self.movieTitle = movieTitle
+        self.myScore = myScore
+    }
 }
