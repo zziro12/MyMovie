@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     // > MovieViewModel을 만들고 뷰레이어에서 필요한 메서드 만들기
     // > 모델가지고 있기 ,, MovieInfo 등
     
-    var movieInfo : MovieInfo?
+    let viewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     func updateUI(){
-        if let movieInfo = self.movieInfo {
+        if let movieInfo = viewModel.movieInfo {
             movieImage.image = movieInfo.image
             movieTitle.text = movieInfo.movieTitle
             myScore.text = "My Score is \(movieInfo.myScore)"
@@ -52,4 +52,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var myScore : UILabel!
     
     
+}
+
+class DetailViewModel {
+    var movieInfo : MovieInfo?
+    
+    func update(model : MovieInfo?){
+        movieInfo = model
+    }
 }

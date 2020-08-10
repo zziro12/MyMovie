@@ -14,6 +14,7 @@
 		E20D5A3924DD3749000EBC92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20D5A3724DD3749000EBC92 /* LaunchScreen.storyboard */; };
 		E20D5A4324DD384C000EBC92 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20D5A4224DD384C000EBC92 /* MovieViewController.swift */; };
 		E2401B0C24DFE9D8000B1454 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2401B0B24DFE9D8000B1454 /* DetailViewController.swift */; };
+		E27F603124E12F7000180C19 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F603024E12F7000180C19 /* MovieInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E20D5A3A24DD3749000EBC92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E20D5A4224DD384C000EBC92 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		E2401B0B24DFE9D8000B1454 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E27F603024E12F7000180C19 /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E20D5A3A24DD3749000EBC92 /* Info.plist */,
 				E20D5A4224DD384C000EBC92 /* MovieViewController.swift */,
 				E2401B0B24DFE9D8000B1454 /* DetailViewController.swift */,
+				E27F603024E12F7000180C19 /* MovieInfo.swift */,
 			);
 			path = MyMovie;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20D5A2D24DD3742000EBC92 /* AppDelegate.swift in Sources */,
+				E27F603124E12F7000180C19 /* MovieInfo.swift in Sources */,
 				E20D5A2F24DD3742000EBC92 /* SceneDelegate.swift in Sources */,
 				E20D5A4324DD384C000EBC92 /* MovieViewController.swift in Sources */,
 				E2401B0C24DFE9D8000B1454 /* DetailViewController.swift in Sources */,
