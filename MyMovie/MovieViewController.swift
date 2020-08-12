@@ -8,7 +8,41 @@
 
 import UIKit
 
-class MovieViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class MovieViewController: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate,
+UICollectionViewDelegateFlowLayout{
+   
+    //MARKS : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+    //UICollectionViewDataSource
+    //몇개를 보여줄것인지
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numOfMovieInfoList
+    }
+    
+    //셀을 어떻게 표현할것인지
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell", for: indexPath) as? GridCell else {
+            return UICollectionViewCell()
+        }
+        let movieInfo = viewModel.movieInfo(at: indexPath.item)
+        cell.setCellUI(info: movieInfo)
+        return cell
+    }
+    
+    //UICollectionViewDelegate
+    //셀이 클릭되었을때 어떻게 할것인지
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieInfo = viewModel.movieInfo(at: indexPath.row)
+        print("\(movieInfo.movieTitle) 디테일 보기")
+        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
+    }
+    
+    //UICollectionViewDelegateFlowLayout
+    //디바이스마다 셀의 사이즈가 조금씩 달라지기때문에 각 디바이스 마다 균형잡힌 레이아웃을 설정해 주기위해 계산
+    //셀 사이즈 계산 (다양한 디바이스에서 일관적인 디자인을 보여주기 위해서)
+    //전체 컬렉션뷰 너비에서 셀간의 간격을 빼고 나누기 2하면 너비를 구할수 있을듯
+    //구한너비에 따라서 이미지뷰는 7:10정도 너비를 주고 레이블쪽 구간은 65정도로 고정된 높이 줄것
+    
+    
     
     //MVVM
     
@@ -43,48 +77,6 @@ class MovieViewController: UIViewController , UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    //MARKS : UITableViewDataSource protocol
-    
-    //UITableViewDataSource
-    //몇개 보여줄거냐
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numOfMovieInfoList
-    }
-    
-    //어떻게 표현할건가     indexPath = 셀의 위치 표시
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //UITableViewCell 이 아닌 CellList로 캐스팅해준다.
-        
-        //guard
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellList else{
-            return UITableViewCell()
-        }
-        //이 성립이 되면 아래 코드가 수행되고 아니면 위에 else 구문
-        let movieInfo = viewModel.movieInfo(at: indexPath.row)
-        cell.setCellUI(info: movieInfo)
-        return cell
-    }
-    
-    //MARKS : UITableViewDelegate
-    //클릭했을때 어떻게 반응할 것인가 tableView 에 didSelectRowAt
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieInfo = viewModel.movieInfo(at: indexPath.row)
-        print("\(movieInfo.movieTitle) 디테일 보기")
-        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
-    }
-}
-
-class CellList : UITableViewCell {
-    @IBOutlet weak var movieImage : UIImageView!
-    @IBOutlet weak var movieTitle : UILabel!
-    @IBOutlet weak var myScore : UILabel!
-    
-    func setCellUI(info : MovieInfo) {
-        movieImage.image = info.image
-        movieTitle.text = info.movieTitle
-        myScore.text = "\(info.myScore)"
-    }
 }
 
 
@@ -117,3 +109,17 @@ class MovieViewModel {
         return sortedList[index]
     }
 }
+    
+class GridCell : UICollectionViewCell {
+    @IBOutlet weak var movieImage : UIImageView!
+    @IBOutlet weak var movieTitle : UILabel!
+    @IBOutlet weak var myScore : UILabel!
+    
+    func setCellUI(info : MovieInfo) {
+        movieImage.image = info.image
+        movieTitle.text = info.movieTitle
+        myScore.text = "\(info.myScore)"
+    }
+}
+
+
