@@ -41,7 +41,16 @@ UICollectionViewDelegateFlowLayout{
     //셀 사이즈 계산 (다양한 디바이스에서 일관적인 디자인을 보여주기 위해서)
     //전체 컬렉션뷰 너비에서 셀간의 간격을 빼고 나누기 2하면 너비를 구할수 있을듯
     //구한너비에 따라서 이미지뷰는 7:10정도 너비를 주고 레이블쪽 구간은 65정도로 고정된 높이 줄것
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSpacing : CGFloat = 10
+        let textAreaHeight : CGFloat = 65
+
+        //UICollectionView.bounds 넓이에서 10(아이템사이 간격)뺀거 / 2
+        let width : CGFloat = (collectionView.bounds.width - itemSpacing)/2
+        let height : CGFloat = width * 10/7 + textAreaHeight
+
+        return CGSize(width: width, height: height)
+    }
     
     
     //MVVM
