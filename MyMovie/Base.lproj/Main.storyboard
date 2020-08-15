@@ -148,7 +148,9 @@
                     <connections>
                         <outlet property="movieImage" destination="ThO-8O-kvA" id="bWy-S6-eyK"/>
                         <outlet property="movieTitle" destination="bJK-JM-cIu" id="oAE-tk-DCF"/>
+                        <outlet property="movieTitleLabelCenterX" destination="xKb-oB-ryl" id="8C4-mj-yq1"/>
                         <outlet property="myScore" destination="Lgv-4S-xlU" id="UeN-Sl-mqu"/>
+                        <outlet property="myScoreLabelCenterX" destination="P01-Sl-G1x" id="0Pa-MA-3g3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OmN-3x-K9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

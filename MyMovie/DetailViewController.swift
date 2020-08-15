@@ -31,6 +31,40 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         //DetailViewController 가 보일때 select cell 데이터값을 받아서 ui를 띄우는 메소드
         updateUI()
+        prepareAnimation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showAnimation()
+    }
+    
+    //scale 크기 3배, 180도 돌려놓는다
+    private func prepareAnimation() {
+        movieTitle.transform = CGAffineTransform(translationX: view.bounds.width, y: 0).scaledBy(x: 3, y: 3).rotated(by: 180)
+        myScore.transform = CGAffineTransform(translationX: view.bounds.width, y: 0).scaledBy(x: 3, y: 3).rotated(by: 180)
+        //투명도 조절 0 =  안보이게
+        movieTitle.alpha = 0
+        myScore.alpha = 0
+    }
+    
+    private func showAnimation() {
+        //CGAffineTransform 변형을 가하는데 identity 변형을 가하기전모습
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {
+            self.movieTitle.transform = CGAffineTransform.identity
+            //투명도 조절 1 =  보이게
+            self.movieTitle.alpha = 1
+            
+        }, completion: nil)
+        UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {
+            self.myScore.transform = CGAffineTransform.identity
+            //투명도 조절 1 =  보이게
+            self.myScore.alpha = 1
+        }, completion: nil)
+                
+        UIView.transition(with: movieImage, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        
+        
     }
     
     func updateUI(){
@@ -51,6 +85,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieTitle : UILabel!
     @IBOutlet weak var myScore : UILabel!
     
+    @IBOutlet weak var movieTitleLabelCenterX: NSLayoutConstraint!
+    
+    @IBOutlet weak var myScoreLabelCenterX: NSLayoutConstraint!
     
 }
 
