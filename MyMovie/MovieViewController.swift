@@ -8,50 +8,11 @@
 
 import UIKit
 
-class MovieViewController: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate,
-UICollectionViewDelegateFlowLayout{
+class MovieViewController: UIViewController {
    
-    //MARKS : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
-    //UICollectionViewDataSource
-    //몇개를 보여줄것인지
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numOfMovieInfoList
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    
-    //셀을 어떻게 표현할것인지
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell", for: indexPath) as? GridCell else {
-            return UICollectionViewCell()
-        }
-        let movieInfo = viewModel.movieInfo(at: indexPath.item)
-        cell.setCellUI(info: movieInfo)
-        return cell
-    }
-    
-    //UICollectionViewDelegate
-    //셀이 클릭되었을때 어떻게 할것인지
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieInfo = viewModel.movieInfo(at: indexPath.row)
-        print("\(movieInfo.movieTitle) 디테일 보기")
-        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
-    }
-    
-    //UICollectionViewDelegateFlowLayout
-    //디바이스마다 셀의 사이즈가 조금씩 달라지기때문에 각 디바이스 마다 균형잡힌 레이아웃을 설정해 주기위해 계산
-    //셀 사이즈 계산 (다양한 디바이스에서 일관적인 디자인을 보여주기 위해서)
-    //전체 컬렉션뷰 너비에서 셀간의 간격을 빼고 나누기 2하면 너비를 구할수 있을듯
-    //구한너비에 따라서 이미지뷰는 7:10정도 너비를 주고 레이블쪽 구간은 65정도로 고정된 높이 줄것
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSpacing : CGFloat = 10
-        let textAreaHeight : CGFloat = 65
-
-        //UICollectionView.bounds 넓이에서 10(아이템사이 간격)뺀거 / 2
-        let width : CGFloat = (collectionView.bounds.width - itemSpacing)/2
-        let height : CGFloat = width * 10/7 + textAreaHeight
-
-        return CGSize(width: width, height: height)
-    }
-    
     
     //MVVM
     
@@ -83,12 +44,55 @@ UICollectionViewDelegateFlowLayout{
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+}
+//MARKS : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+//UICollectionViewDataSource
+extension MovieViewController : UICollectionViewDataSource{
+    //UICollectionViewDataSource
+    //몇개를 보여줄것인지
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numOfMovieInfoList
+    }
+    
+    //셀을 어떻게 표현할것인지
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell", for: indexPath) as? GridCell else {
+            return UICollectionViewCell()
+        }
+        let movieInfo = viewModel.movieInfo(at: indexPath.item)
+        cell.setCellUI(info: movieInfo)
+        return cell
     }
 }
 
+//UICollectionViewDelegate
+extension MovieViewController : UICollectionViewDelegate {
+    //셀이 클릭되었을때 어떻게 할것인지
+       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           let movieInfo = viewModel.movieInfo(at: indexPath.row)
+           print("\(movieInfo.movieTitle) 디테일 보기")
+           performSegue(withIdentifier: "showDetail", sender: indexPath.row)
+       }
+}
 
+//UICollectionViewDelegateFlowLayout
+extension MovieViewController : UICollectionViewDelegateFlowLayout{
+    //디바이스마다 셀의 사이즈가 조금씩 달라지기때문에 각 디바이스 마다 균형잡힌 레이아웃을 설정해 주기위해 계산
+    //셀 사이즈 계산 (다양한 디바이스에서 일관적인 디자인을 보여주기 위해서)
+    //전체 컬렉션뷰 너비에서 셀간의 간격을 빼고 나누기 2하면 너비를 구할수 있을듯
+    //구한너비에 따라서 이미지뷰는 7:10정도 너비를 주고 레이블쪽 구간은 65정도로 고정된 높이 줄것
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSpacing : CGFloat = 10
+        let textAreaHeight : CGFloat = 65
+
+        //UICollectionView.bounds 넓이에서 10(아이템사이 간격)뺀거 / 2
+        let width : CGFloat = (collectionView.bounds.width - itemSpacing)/2
+        let height : CGFloat = width * 10/7 + textAreaHeight
+
+        return CGSize(width: width, height: height)
+    }
+}
 
 class MovieViewModel {
     let movieInfoList : [MovieInfo] = [
